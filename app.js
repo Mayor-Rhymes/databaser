@@ -6,10 +6,10 @@ const app = express();
 const handlebars = require('express-handlebars').create({defaultLayout: 'main'});
 const bodyParser = require('body-parser');
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'inec'
+  host: 'us-cdbr-east-05.cleardb.net',
+  user: 'b158c78ff88189',
+  password: 'a164796f',
+  database: 'heroku_dfb7d11f6dc7a66'
 })
 
 connection.connect()
@@ -49,29 +49,6 @@ let results;
 // })
 
 //Answer For First Question Provided
-app.get('/result2', (req, res) => {
-    
-    connection.query(`select sum(party_score) as TotalResult from announced_pu_results where polling_unit_uniqueid = ${req.query.id}`, (err, rows, fields) => {
-
-        if(err) console.error(err);
-    
-    
-        else {
-           
-    
-           res.render('result2', {data: rows});
-           console.log(rows)
-        }
-    
-        
-    })
-    
-
-
-
- })
-
-
 
 
 app.get('/', (req, res) => {
@@ -98,7 +75,32 @@ app.get('/result', (req, res) => {
       }
     })
   
+})
+
+app.get('/result2', (req, res) => {
+    
+  connection.query(`select sum(party_score) as TotalResult from announced_pu_results where polling_unit_uniqueid = ${req.query.id}`, (err, rows, fields) => {
+
+      if(err) console.error(err);
+  
+  
+      else {
+         
+  
+         res.render('result2', {data: rows});
+         console.log(rows)
+      }
+  
+      
   })
+  
+
+
+
+})
+
+
+
 
 
 app.set('port', process.env.PORT || 3000);
