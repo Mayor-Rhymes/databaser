@@ -21,34 +21,8 @@ app.use(express.urlencoded({extended: false}));
 const jsonParser = bodyParser.json();
 app.use(express.static(path.join(__dirname, 'views')))
 
-let results;
-
-// connection.query('SELECT * FROM polling_unit', (err, rows, fields) => {
-
-//     if(err) console.error(err);
 
 
-//     else {
-       
-
-//       results = Array.from(rows);
-//       for(let i of results){
-
-
-//         console.log(i)
-//       }
-//     }
-
-    
-// })
-
-// connection.query('SELECT 1 + 1 AS solution', (err, rows, fields) => {
-//   if (err) throw err
-
-//   console.log('The solution is: ', rows[0].solution)
-// })
-
-//Answer For First Question Provided
 
 
 app.get('/', (req, res) => {
